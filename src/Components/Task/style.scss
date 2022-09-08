@@ -1,0 +1,100 @@
+$blue: #5680f9;
+$red: #ff2f2f;
+$white: #fff;
+$border: 1px solid #e1e4e8;
+$background_color: #f7f8fe;
+.task {
+  width: 100%;
+  background-color: $white;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  border-radius: 5px;
+  cursor: grab;
+
+  &__editing {
+    flex-grow: 2;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  &__editing-bgr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(106, 106, 108, 0.5);
+    width: 100vw;
+    height: 100vh;
+  }
+  &__editor {
+    width: 100%;
+    margin-right: 5px;
+    text-indent: 2px;
+    font-size: 17px;
+    z-index: 9;
+    border: 1px solid #888;
+    padding: 10px 6px;
+    border-radius: 5px;
+  }
+  &__editing-action {
+    display: flex;
+    z-index: 99;
+    i {
+      cursor: pointer;
+      color: #666666;
+      margin-left: 8px;
+      font-size: 18px;
+      &:first-child {
+        color: #49ff06;
+      }
+      &:last-child {
+        color: $red;
+      }
+    }
+  }
+  .task__time {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  .task__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .task__content {
+      flex-grow: 2;
+      padding-right: 10px;
+      word-wrap: break-word;
+      font-size: 17px;
+    }
+    .task__action {
+      display: flex;
+      .task__btn {
+        margin: 0 5px;
+        font-size: 15px;
+
+        &:first-child {
+          color: $blue;
+          cursor: pointer;
+          opacity: 0.7;
+          transition: 300ms;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        &:last-child {
+          color: $red;
+          cursor: pointer;
+          opacity: 0.7;
+          transition: 300ms;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+$blue: #5680f9;
+$red: #ff2f2f;
+$white: #fff;
+$border: 1px solid #e1e4e8;
+$background_color: #f7f8fe;
+
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-margin-top: 8.5rem;
+}
+
+.App {
+  margin: 0 auto;
+  margin: 30px auto 0;
+  overflow: auto;
+  padding: 0 50px;
+
+  .title {
+    color: $blue;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+}
