@@ -58,8 +58,9 @@ class App extends Component {
         time: new Date().toLocaleString(),
       });
       const columnIndex = columns.findIndex(
-        (column) => column.get("id") === editingColumnIndex
+        (column) => column.get(this.state.selectedColumn) === editingColumnIndex
       );
+      console.log("column", columnIndex);
       const updatedColumn = columns.updateIn([columnIndex, "tasks"], (tasks) =>
         tasks.push(newTask)
       );
@@ -164,6 +165,7 @@ class App extends Component {
       );
     }
   };
+
   render() {
     const {
       columns,
@@ -172,7 +174,7 @@ class App extends Component {
       taskContent,
       editedTaskId,
     } = this.state;
-
+    console.log(this.state.columns);
     return (
       <div className="App">
         <div id="toast"></div>
