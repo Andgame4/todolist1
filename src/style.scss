@@ -13,8 +13,6 @@ $background_color: #f7f8fe;
 html {
   font-size: 62.5%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  scroll-margin-top: 8.5rem;
 }
 
 .App {
@@ -29,5 +27,11 @@ html {
     text-align: center;
     margin-bottom: 24px;
     font-weight: 700;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px;
   }
 }

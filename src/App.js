@@ -41,7 +41,7 @@ class App extends Component {
   handleChangeEditingColumnIndex = (editingColumnIndex) => () =>
     this.setState({ editingColumnIndex: editingColumnIndex });
 
-  handleAddNewModal = () => {
+  handleAddNewTask = () => {
     const { taskContent } = this.state;
     if (taskContent.trim() === "") {
       toast({
@@ -57,10 +57,10 @@ class App extends Component {
         content: taskContent,
         time: new Date().toLocaleString(),
       });
+      console.log("column", this.state.selectedColumn);
       const columnIndex = columns.findIndex(
-        (column) => column.get(this.state.selectedColumn) === editingColumnIndex
+        (column) => column.get("id") === editingColumnIndex
       );
-      console.log("column", columnIndex);
       const updatedColumn = columns.updateIn([columnIndex, "tasks"], (tasks) =>
         tasks.push(newTask)
       );
@@ -174,7 +174,6 @@ class App extends Component {
       taskContent,
       editedTaskId,
     } = this.state;
-    console.log(this.state.columns);
     return (
       <div className="App">
         <div id="toast"></div>
@@ -228,7 +227,7 @@ class App extends Component {
             taskContent={taskContent}
             handleChangeTaskContent={this.handleChangeTaskContent}
             handleChangeEditingColumnIndex={this.handleChangeEditingColumnIndex}
-            handleAddNewTask={this.handleAddNewModal}
+            handleAddNewTask={this.handleAddNewTask}
             handleToggleModal={this.handleToggleModal()}
             selectedColumn={this.state.selectedColumn}
             handleChangeSelectedColumn={this.handleChangeSelectedColumn}
