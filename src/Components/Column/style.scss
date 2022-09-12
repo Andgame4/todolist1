@@ -26,11 +26,11 @@ $background_color: #f7f8fe;
     .column {
       border-radius: 5px;
       width: 360px;
-      height: 500px;
+      height: 600px;
       border: $border;
       padding: 10px 20px;
       background-color: $background_color;
-      overflow-x: hidden;
+      overflow-y: scroll;
       .column__header {
         display: flex;
         justify-content: space-between;

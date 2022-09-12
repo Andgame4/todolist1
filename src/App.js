@@ -23,11 +23,13 @@ class App extends Component {
     ]),
   };
   componentDidMount() {
+    this.handleScroll();
     const columns = localStorage.getItem("columns");
     if (columns) {
       this.setState({ columns: fromJS(JSON.parse(columns)) });
     }
   }
+
   handleToggleModal =
     (choosenColumn = "") =>
     () => {
@@ -57,7 +59,7 @@ class App extends Component {
         content: taskContent,
         time: new Date().toLocaleString(),
       });
-      console.log("column", this.state.selectedColumn);
+
       const columnIndex = columns.findIndex(
         (column) => column.get("id") === editingColumnIndex
       );
@@ -75,6 +77,53 @@ class App extends Component {
           localStorage.setItem("columns", JSON.stringify(updatedColumn.toJS()));
         }
       );
+    }
+  };
+
+  handleScroll = () => {
+    const column = document.getElementsByClassName("column");
+    for (let i = 0; i < column.length; i++) {
+      // eslint-disable-next-line no-loop-func
+      column[i].addEventListener("scroll", () => {
+        // console.log("offsetHeight", column[i].offsetHeight);
+        // console.log("scrollTop", column[i].scrollTop);
+        // console.log("scrollHeight", column[i].scrollHeight);
+
+        if (
+          column[i].offsetHeight + column[i].scrollTop >
+          column[i].scrollHeight
+        ) {
+          const { columns } = this.state;
+          const newTask = fromJS({
+            id: uuidv1(),
+            content: "hello world",
+            time: new Date().toLocaleString(),
+          });
+          const updatedColumn = columns.updateIn([i, "tasks"], (tasks) =>
+            tasks.push(newTask)
+          );
+          this.setState(
+            {
+              displayModal: false,
+              editingColumnIndex: "",
+              taskContent: "",
+              columns: fromJS(updatedColumn),
+            },
+            () => {
+              localStorage.setItem(
+                "cards",
+                JSON.stringify(updatedColumn.toJS())
+              );
+            }
+          );
+          toast({
+            title: "successfully updated",
+            message: " them thông tin thanh cong",
+            type: "success",
+            duration: 2000,
+          });
+        }
+      });
     }
   };
 
